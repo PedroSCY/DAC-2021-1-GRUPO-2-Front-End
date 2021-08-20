@@ -39,12 +39,7 @@
           <br>
 
           <div class="card-footer border-success text-center">
-            <a
-              href="/form"
-              class="btn btn-outline-light"
-            >
-              Editar
-            </a>
+            <router-link class="btn btn-outline-light" to="/form"> Editar </router-link>
           </div>
           
         </div>
@@ -80,12 +75,7 @@
           <br>
 
           <div class="card-footer border-success text-center">
-            <a
-              href="/form"
-              class="btn btn-outline-light"
-            >
-              Editar
-            </a>
+            <router-link class="btn btn-outline-light" to="/form"> Editar </router-link>
           </div>
           
         </div>
@@ -121,12 +111,7 @@
           <br>
 
           <div class="card-footer border-success text-center">
-            <a
-              href="/form"
-              class="btn btn-outline-light"
-            >
-              Editar
-            </a>
+           <router-link class="btn btn-outline-light" to="/form"> Editar </router-link>
           </div>
           
         </div>
@@ -162,12 +147,7 @@
           <br>
 
           <div class="card-footer border-success text-center">
-            <a
-              href="/form"
-              class="btn btn-outline-light"
-            >
-              Editar
-            </a>
+            <router-link class="btn btn-outline-light" to="/form"> Editar </router-link>
           </div>
           
         </div>
@@ -203,26 +183,21 @@
           <br>
 
           <div class="card-footer border-success text-center">
-            <a
-              href="/form"
-              class="btn btn-outline-light"
-            >
-              Editar
-            </a>
+
+            <router-link class="btn btn-outline-light" to="/form"> Editar </router-link>
+      
           </div>
           
         </div>
       </div>
     </div>
 
-    <div class="text-center">
-      <a
-        href="/form"
-        class="mt-2 btn btn-outline-success"
-      >
-        Adicionar
-      </a>
+    <div class="text-center ">
+
+      <router-link class="mt-2 btn btn-outline-success" to="/form"> Adicionar </router-link>
+     
     </div>
+
     
   </div>
 </template>

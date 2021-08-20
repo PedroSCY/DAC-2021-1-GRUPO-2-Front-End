@@ -22,17 +22,17 @@
       ></div>
 
       <div class="col-12 col-sm-6">
-        <label for="inputEmail" class=" d-flex align-items-start form-label"> Nome </label>
+        <label for="inputNome" class=" d-flex align-items-start form-label"> Nome </label>
 
         <input
           type="text"
           class="form-control border border-success"
-          id="inputEmail"
+          id="inputNome"
           placeholder="insira o nome do fornecedor"
           required
         />
 
-        <div class="valid-feedback">Este e-mail parece OK!</div>
+        <div class="valid-feedback">Este nome parece OK!</div>
 
         <div
           class="invalid-feedback"
@@ -43,47 +43,40 @@
       </div>
 
       <div class="col-12 col-sm-6">
-        <label for="inputNome" class="d-flex align-items-start form-label"> CNPJ </label>
+        <label for="inputCNPJ" class="d-flex align-items-start form-label"> CNPJ </label>
 
         <input
           type="text"
           class="form-control border border-success"
-          id="inputNome"
+          id="inputCNPJ"
           placeholder="insira o CNPJ do fornecedor"
           required
         />
 
-        <div class="valid-feedback">Este nome parece OK!</div>
+        <div class="valid-feedback">Este CNPJ parece OK!</div>
 
         <div
           class="invalid-feedback"
         >
-          Erros nome
+          Erros CNPJ
         </div>
       </div>
 
       <div class="col-12 col-sm-6">
-        <label for="inputSenha" class="d-flex align-items-start form-label">Telefone </label>
+        <label for="inputTelefone" class="d-flex align-items-start form-label">Telefone </label>
         <input
           type="tel"
           class="form-control border border-success"
-          id="inputSenha"
+          id="inputTelefone"
           placeholder="No mínimo 11 números!"
           required
        
         />
 
-        <div class="valid-feedback">As senhas estão iguais.</div>
-
-        <div
-          class="invalid-feedback"
-        >
-          Erros senha
-        </div>
       </div>
 
       <div class="col-12 col-sm-6">
-        <label for="inputConfirmarSenha" class="d-flex align-items-start form-label">
+        <label for="inputComplementoFornecedor" class="d-flex align-items-start form-label">
           Complemento
         </label>
 
@@ -92,8 +85,6 @@
           id="inputComplementoFornecedor"
           required
         />
-
-        <div class="valid-feedback">As senhas estão iguais.</div>
       
       </div>
 
@@ -105,11 +96,23 @@
         Salvar Fornecedor
       </button>
 
-      <a
-        class="btn btn-outline-danger mt-4 mb-3 w-25 mx-auto" href="/home"
+        <button
+        id="btnAtualizarFornecedor"
+        class="btn btn-outline-warning mt-4 mb-3 w-25 mx-auto"
+        type="submit"
       >
-        Cancelar
-      </a>
+        Atualizar Fornecedor
+      </button>
+
+        <button
+        id="btnExcluirFornecedor"
+        class="btn btn-outline-dark mt-4 mb-3 w-25 mx-auto"
+        type="submit"
+      >
+        Excluir Fornecedor
+      </button>
+
+      <router-link class="btn btn-outline-danger mt-4 mb-3 w-25 mx-auto" to="/home"> Cancelar </router-link>
       
     </form>
   </div>
@@ -120,9 +123,13 @@
 <script>
 export default {
   name: "Form",
+  
+  
   data() {
     return {
         erroLogin: false,
+
+        
     };
   },
 };
