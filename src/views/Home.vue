@@ -202,11 +202,14 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: "Home",
   data() {
-    return {};
+    return { 
+      fornecedores: this.$store.state.autores
+    };
   },
 };
 </script>
