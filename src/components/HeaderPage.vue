@@ -13,9 +13,11 @@
         ></ul>
       </div>
       <form action="/">
-        <button
+        <button 
           class="btn btn-outline-dark"
-          type="submit"
+          type="text"
+          id = "btnSair"
+          v-if="!(paginaAtual==='http://localhost:8080/')"
         >
           Sair
         </button>
@@ -26,10 +28,13 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "HeaderPage",
   data() {
-    return {};
-  },
+    return {
+      paginaAtual: window.location.href,
+    };
+
+  }
 };
 </script>
 
