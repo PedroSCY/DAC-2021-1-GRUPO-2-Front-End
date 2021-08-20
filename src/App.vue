@@ -1,20 +1,24 @@
 <template>
- <h1>Teste Inicio</h1>
- <minha-home></minha-home>
+<HeaderPage></HeaderPage>
+<router-view></router-view>
+<Footer></Footer>
 </template>
 
 <script>
-import MinhaHome from './views/MinhaHome.vue'
+
+import HeaderPage from "../src/components/HeaderPage.vue"
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
    data(){
     return {
-      msg: "Bem vindo ao Front"
+    
     }
   },
   components: {
-    MinhaHome
+    HeaderPage,
+    Footer
   }
 }
 </script>
@@ -26,6 +30,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
