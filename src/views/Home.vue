@@ -7,9 +7,17 @@
       <div
         class="listaLivros"
         v-for="fornecedor in fornecedores"
-        :key="fornecedor.nome"
+        :key="fornecedor.id"
       >
-        <div class="modal" v-bind:id="'modal'+fornecedor.id" >
+        <div
+          class="modal"
+          v-bind:id="'modal' + fornecedor.id"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header border-0">
@@ -18,10 +26,12 @@
                   class="btn-close btn-outline-success"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  v-on:click="refresh()"
                 ></button>
               </div>
+
               <div class="modal-body modal-dialog-scrollable rounded">
-                <form action="#" method="POST">
+                <form class="form" @submit.prevent>
                   <div
                     class="
                       col-12
@@ -36,7 +46,7 @@
                   ></div>
 
                   <div class="text-dark m-3 mb-5 text">
-                    <h4> Atualize ou Remova um Fornecedor</h4>
+                    <h4>Atualize ou Remova um Fornecedor</h4>
                   </div>
 
                   <label
@@ -51,8 +61,6 @@
                     class="form-control border border-success"
                     id="inputNome"
                     v-model="fornecedor.nome"
-                    placeholder="insira o nome do fornecedor"
-                    
                     required
                   />
 
@@ -62,13 +70,7 @@
 
                   <label
                     for="inputCNPJ"
-                    class="
-                      d-flex
-                      align-items-start
-                      form-label
-                      text-dark
-                      mt-2
-                    "
+                    class="d-flex align-items-start form-label text-dark mt-2"
                   >
                     CNPJ
                   </label>
@@ -88,13 +90,7 @@
 
                   <label
                     for="inputTelefone"
-                    class="
-                      d-flex
-                      align-items-start
-                      form-label
-                      text-dark
-                      mt-2
-                    "
+                    class="d-flex align-items-start form-label text-dark mt-2"
                     >Telefone
                   </label>
                   <input
@@ -108,17 +104,10 @@
 
                   <label
                     for="inputComplementoFornecedor"
-                    class="
-                      d-flex
-                      align-items-start
-                      form-label
-                      text-dark
-                      mt-2
-                    "
+                    class="d-flex align-items-start form-label text-dark mt-2"
                   >
                     Complemento
                   </label>
-              
 
                   <textarea
                     class="form-control border border-success"
@@ -131,14 +120,20 @@
                   <div class="text-center">
                     <button
                       type="submit"
+                      value="Enviar"
                       class="btn btn-outline-success me-1"
+                      data-bs-dismiss="modal"
+                      v-on:click="atualizarFornecedor(fornecedor)"
                     >
                       Atualizar
                     </button>
 
                     <button
                       type="submit"
-                      class="btn btn-outline-success me-1"
+                      value="Enviar"
+                      class="btn btn-outline-danger me-1"
+                      data-bs-dismiss="modal"
+                      v-on:click="removerFornecedor(fornecedor.id)"
                     >
                       Remover
                     </button>
@@ -184,17 +179,14 @@
                 type="button"
                 class="btn btn-outline-light"
                 data-bs-toggle="modal"
-                v-bind:data-bs-target="'#modal'+fornecedor.id"
+                v-bind:data-bs-target="'#modal' + fornecedor.id"
               >
                 Editar
               </button>
             </div>
           </div>
         </div>
-
-        
       </div>
-      
     </div>
 
     <div class="text-center">
@@ -207,7 +199,15 @@
         Adicionar
       </button>
     </div>
-     <div class="modal" id="FormModalVazio">
+    <div
+      class="modal"
+      id="FormModalVazio"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-0">
@@ -216,10 +216,11 @@
               class="btn-close btn-outline-success"
               data-bs-dismiss="modal"
               aria-label="Close"
+              v-on:click="refresh()"
             ></button>
           </div>
           <div class="modal-body modal-dialog-scrollable rounded">
-            <form action="#" method="POST">
+            <form class="form" @submit.prevent>
               <div
                 class="
                   col-12
@@ -234,7 +235,7 @@
               ></div>
 
               <div class="text-dark m-3 mb-5 text">
-                <h4 >Adicione um Fornecedor</h4>
+                <h4>Adicione um Fornecedor</h4>
               </div>
 
               <label
@@ -247,8 +248,9 @@
               <input
                 type="text"
                 class="form-control border border-success"
-                id="inputNome"
+                id="inputNomeAdd"
                 placeholder="insira o nome do fornecedor"
+                v-model="fornecedor.nome"
                 required
               />
 
@@ -266,7 +268,8 @@
               <input
                 type="text"
                 class="form-control border border-success"
-                id="inputCNPJ"
+                id="inputCNPJAdd"
+                v-model="fornecedor.cnpj"
                 placeholder="insira o CNPJ do fornecedor"
                 required
               />
@@ -283,7 +286,8 @@
               <input
                 type="tel"
                 class="form-control border border-success"
-                id="inputTelefone"
+                id="inputTelefoneAdd"
+                v-model="fornecedor.telefone"
                 placeholder="No mínimo 11 números!"
                 required
               />
@@ -297,22 +301,22 @@
 
               <textarea
                 class="form-control border border-success"
-                id="inputComplementoFornecedor"
+                id="inputComplementoFornecedorAdd"
+                v-model="fornecedor.complemento"
               />
 
               <br />
 
               <div class="text-center">
-
                 <button
                   type="submit"
+                  value="Enviar"
                   class="btn btn-outline-success me-1"
+                  v-on:click="enviarNovoFornecedor()"
                 >
                   Adicionar
                 </button>
-
               </div>
-
             </form>
           </div>
         </div>
@@ -330,11 +334,17 @@ export default {
   name: "Home",
   data() {
     return {
-      fornecedores: this.$store.state.fornecedores,
+      fornecedores: undefined,
+
+      fornecedor: {
+        nome: "",
+        cnpj: "",
+        telefone: "",
+      },
     };
   },
   calcularTarget(id) {
-    return '#' + id
+    return "#" + id;
   },
   created() {
     console.log("Created.");
@@ -349,6 +359,94 @@ export default {
       .catch((err) => {
         console.error(err);
       });
+  },
+  methods: {
+    refresh: function () {
+      location.reload();
+    },
+    atualizarFornecedor: function (fornecedor) {
+      if (
+        fornecedor.nome != "" &&
+        fornecedor.cnpj != "" &&
+        fornecedor.telefone != ""
+      ) {
+        servicoFornecedor
+          .atualiza(fornecedor)
+          .then((dado) => {
+            console.log(dado.data);
+            this.$store.commit("ATUALIZA_FORNECEDOR", fornecedor);
+            console.log("Fornecedor atualizado: " + fornecedor.nome);
+          })
+          .catch((erro) => {
+            switch (erro.response.status) {
+              case 400:
+                this.$store.commit("logout");
+                break;
+            }
+            console.log(erro.message);
+            console.log(erro.response.data.message);
+          });
+
+        console.log(fornecedor);
+        this.$router.push("/home");
+        location.reload();
+      } else {
+        console.log("ERRO: Fornecedor com valores vazios ");
+      }
+    },
+
+    removerFornecedor: function (id) {
+      servicoFornecedor
+        .remove(id)
+        .then((dado) => {
+          console.log(dado.data);
+          this.$store.commit("REMOVE_FORNECEDOR", this.fornecedor);
+          console.log("Fornecedor removido: " + this.fornecedor.nome);
+        })
+        .catch((erro) => {
+          switch (erro.response.status) {
+            case 400:
+              this.$store.commit("logout");
+              break;
+          }
+          console.log(erro.message);
+          console.log(erro.response.data.message);
+        });
+
+      this.$router.push("/home");
+      location.reload();
+    },
+
+    enviarNovoFornecedor: function () {
+      if (
+        this.fornecedor.nome != "" &&
+        this.fornecedor.cnpj != "" &&
+        this.fornecedor.telefone != ""
+      ) {
+        console.log("teste1");
+        servicoFornecedor
+          .adiciona(this.fornecedor)
+          .then((dado) => {
+            console.log(dado.data);
+            this.$store.commit("ADICIONA_FORNECEDOR", this.fornecedor);
+            console.log("Fornecedor adicionado: " + this.fornecedor.nome);
+          })
+          .catch((erro) => {
+            switch (erro.response.status) {
+              case 401:
+                this.$store.commit("logout");
+                break;
+            }
+            console.log(erro.message);
+            console.log(erro.response.data.message);
+          });
+
+        this.$router.push("/home");
+        location.reload();
+      } else {
+        console.log("ERRO: Fornecedor com valores vazios ");
+      }
+    },
   },
 };
 </script>
