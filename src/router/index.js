@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from "../components/Login.vue"
 import Form from "../components/Form.vue"
 import Home from "../views/Home.vue"
+import FormModal from "../components/FormModal"
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/form',
     component: Form
+  },
+  {
+    path: '/formModal',
+    component: FormModal
   },
 ]
 

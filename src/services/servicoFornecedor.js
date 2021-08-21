@@ -1,6 +1,6 @@
-import {http} from './configuracoes'
+import { http } from './api'
 
 export default{
-    lista:() => {return http.get("fornecedor/listar")},
-    adiciona:(fornecedor) => {return http.post("fornecedor/criar",fornecedor)}
+    lista: () => { return http.get("/listar") },
+    adiciona: (fornecedor) => { return http.post("/criar", fornecedor) }
 }
