@@ -1,11 +1,14 @@
 <template>
+ <div>
+   <header-page></header-page>
+ </div>
   <div class="tab-pane" role="tabpanel" aria-labelledby="fornecedores-tab">
     <h2 class="pt-1 pb-1 mt-3 text-success">Fornecedores Cadastrados</h2>
     <hr />
 
-    <div class="row row-cols-2 row-cols-sm-3 justify-content-center">
+    <div class=" d-flex justify-content-center row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3 ">
       <div
-        class="listaLivros"
+        class="listaLivros col d-flex justify-content-center"
         v-for="fornecedor in fornecedores"
         :key="fornecedor.id"
       >
@@ -328,6 +331,7 @@
 
 
 <script>
+import HeaderPage from "../components/HeaderPage.vue"
 import servicoFornecedor from "../services/servicoFornecedor";
 
 export default {
@@ -342,6 +346,9 @@ export default {
         telefone: "",
       },
     };
+  },
+    components: {
+    HeaderPage
   },
   calcularTarget(id) {
     return "#" + id;

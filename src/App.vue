@@ -1,12 +1,9 @@
 <template>
-<HeaderPage></HeaderPage>
 <router-view></router-view>
 <Footer></Footer>
 </template>
 
 <script>
-
-import HeaderPage from "../src/components/HeaderPage.vue"
 import Footer from './components/Footer.vue'
 
 export default {
@@ -16,7 +13,6 @@ export default {
    }
   },
   components: {
-    HeaderPage,
     Footer,
   }
 }

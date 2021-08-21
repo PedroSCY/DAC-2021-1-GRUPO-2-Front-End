@@ -17,7 +17,7 @@
           class="btn btn-outline-dark"
           type="text"
           id = "btnSair"
-          v-if="!(paginaAtual==='http://localhost:8080/')"
+          v-if="(paginaAtual==='http://localhost:8080/home')"
         >
           Sair
         </button>

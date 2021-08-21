@@ -1,4 +1,7 @@
 <template>
+ <div>
+   <header-page></header-page>
+ </div>
   <div class="container mt-4 w-75">
     <h4 class="fw-bold mb-5">Insira seus dados para fazer Login!</h4>
 
@@ -76,14 +79,11 @@
 </template>
 
 <script>
-
+import HeaderPage from "../components/HeaderPage.vue"
 import { ErrorMessage } from "vee-validate";
 
 export default {
   name: "Login",
-  components: {
-    ErrorMessage,
-  },
   data() {
     return {
       username: "",
@@ -92,6 +92,9 @@ export default {
       erroLogin: false,
 
     };
+  },
+  components: {
+    HeaderPage
   },
   computed: {
     loggedIn() {
