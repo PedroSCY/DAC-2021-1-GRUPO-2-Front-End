@@ -219,7 +219,6 @@
               class="btn-close btn-outline-success"
               data-bs-dismiss="modal"
               aria-label="Close"
-              v-on:click="refresh()"
             ></button>
           </div>
           <div class="modal-body modal-dialog-scrollable rounded">
